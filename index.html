@@ -10,32 +10,51 @@
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <h1 id="todo-title">Todo List</h1>
+      <h2 id="todo-subtitle">aplikasi todo list</h2>
 
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <input type="text" id="todo-input">
+      <button id="todo-submit">sumbit</button>
 
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+      <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.querySelector('#todo-submit');
+      let input = document.querySelector('#todo-input');
+      let output = document.querySelector('#todo-output');
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        let li = document.createElement('li');
+        li.textContent = toDoItem;
+        output.append(li);
+        input.value = "";
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
-      
+      button.addEventListener('click', () => {
+        let toDoItem = input.value;
+        fnClickHandler(toDoItem);
+      })
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener('keypress', (event) => {
+        if(event.key === 'Enter'){
+          let toDoItem = input.value;
+          fnClickHandler(toDoItem);
+        }
+      })
     </script>
   </body>
 </html>
